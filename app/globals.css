@@ -1,0 +1,1358 @@
+/* ============================================
+   GLOBALS — Dennis Snellenberg Replica
+   Abdul Haseeb Iqbal Portfolio
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg:        #999D9E;
+  --color-dark:      #1C1D20;
+  --color-light:     #EDEDED;
+  --color-white:     #FFFFFF;
+  --color-blue:      #455CE9;
+  --color-text:      #1C1D20;
+  --color-gray:      #7a7a7a;
+
+  --font-main: 'NeueMontreal', 'Inter', sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out:   cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: none;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   CUSTOM CURSOR
+   ============================================ */
+.cursor-ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--color-dark);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s var(--ease-out-expo),
+              width 0.4s var(--ease-out-expo),
+              height 0.4s var(--ease-out-expo),
+              background 0.3s ease,
+              opacity 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-ball.hovered {
+  width: 80px;
+  height: 80px;
+  background: var(--color-dark);
+}
+
+.cursor-ball.link-hovered {
+  width: 60px;
+  height: 60px;
+}
+
+/* ============================================
+   PRELOADER
+   ============================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-dark);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.preloader__counter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.preloader__words {
+  overflow: hidden;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.preloader__word {
+  color: var(--color-white);
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(100%);
+  position: absolute;
+}
+
+.preloader__counter {
+  color: var(--color-white);
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  min-width: 80px;
+  text-align: right;
+}
+
+.preloader__bar-wrapper {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.preloader__bar {
+  height: 100%;
+  background: var(--color-white);
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.preloader__slides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.preloader__slide {
+  flex: 1;
+  background: var(--color-dark);
+  transform-origin: bottom;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34px 48px; /* Slightly more spacious breathing room to match larger text */
+  mix-blend-mode: normal;
+}
+
+.nav__logo {
+  font-size: 17px; /* Increased from 13px to suit the page scale perfectly */
+  font-weight: 450; /* Slightly richer weight for clean readability */
+  color: #FFFFFF; /* Crisp solid white exactly like Dennis's site */
+  letter-spacing: 0.01em;
+  opacity: 0.95;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Proportionally larger gap between links */
+}
+
+.nav__link {
+  font-size: 17px; /* Increased from 13px to suit the page scale perfectly */
+  font-weight: 450; /* Slightly richer weight for clean readability */
+  color: #FFFFFF; /* Crisp solid white exactly like Dennis's site */
+  letter-spacing: 0.01em;
+  position: relative;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+.nav__link:hover {
+  opacity: 1;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-dark);
+  transition: width 0.3s var(--ease-out-expo);
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   HEADER / HERO
+   ============================================ */
+.header {
+  min-height: 100vh;
+  height: 100vh;
+  background: var(--color-bg);
+  position: sticky; /* Sticky for luxury peel away scroll effect! */
+  top: 0;
+  z-index: 1; /* Stays underneath scrolling content */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align elements to bottom */
+}
+
+/* Enforce all trailing content to slide OVER the sticky header */
+.about, .work, .contact, .footer {
+  position: relative;
+  z-index: 10; /* Forces content above the header! */
+}
+
+/* Dennis-style tall portrait anchored to bottom-center - 100% transparent cutout with NO box background */
+.header__center {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.header__img-wrapper {
+  width: clamp(460px, 42vw, 760px); /* Perfectly balanced, majestic width */
+  height: clamp(580px, 76vh, 980px); /* Brought down by 10vh (approx. 3 cm) to keep the head perfectly in frame */
+  overflow: visible; /* Let the cutout stand naturally */
+  position: relative;
+  border-radius: 0; /* NO box border radius! */
+  box-shadow: none; /* NO card shadow! */
+  background: transparent; /* 100% transparent background! */
+  display: flex;
+  align-items: flex-end;
+}
+
+.header__img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Preserve perfect aspect ratio of the transparent PNG */
+  object-position: bottom center;
+  transform: scale(1.02); /* Gentle scaling so the head sits beautifully within the viewport boundaries */
+  transform-origin: bottom center;
+}
+
+/* Floating Left Location Capsule - attached flush to screen edge and perfectly vertically centered */
+.header__location-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Perfectly centered vertically */
+  left: 0; /* Fully flush to the left screen edge */
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.header__location-badge {
+  display: flex;
+  align-items: center;
+  height: 105px; /* Changed to exactly 105px as requested! */
+  gap: 36px; /* Perfect proportional gap between text block and grey circle */
+  background: #1C1D20;
+  color: #FFFFFF;
+  /* Proportional template padding: exact left padding for text and snug right padding for circle */
+  padding: 0 28px 0 52px;
+  /* Flat on the left, perfect semi-circle curve on the right */
+  border-radius: 0 100px 100px 0;
+  box-shadow: 10px 10px 40px rgba(0,0,0,0.15);
+  transition: padding-left 0.4s cubic-bezier(0.76, 0, 0.24, 1), transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  transform-origin: left center;
+}
+
+.header__location-badge:hover {
+  padding-left: 64px; /* Smooth sliding drawer response on hover */
+}
+
+.header__location-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 19px; /* Crisp, rich editorial size matching the reference exactly */
+  font-weight: 450; /* Rich medium weight for maximum legibility */
+  line-height: 1.15; /* Snug, professional line height matching the reference exactly */
+  letter-spacing: -0.01em;
+  font-family: var(--font-main); /* Inter font */
+  color: #FFFFFF;
+}
+
+.header__globe-icon {
+  width: 62px; /* Scaled circle diameter to maintain perfect vertical centering inside 105px height */
+  height: 62px;
+  background: #999D9E; /* SOLID medium grey background matching your picture perfectly! */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.header__globe-icon svg {
+  width: 30px; /* Sized globe icon to center perfectly inside the 62px circle */
+  height: 30px;
+  animation: rotateGlobe 12s linear infinite;
+}
+
+@keyframes rotateGlobe {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Floating Right arrow & subtitle - perfectly vertically centered and snugged to match left capsule */
+.header__meta-text-container {
+  position: absolute;
+  top: 48%; /* Changed to exactly 48% as requested! */
+  transform: translateY(-50%); /* Perfectly vertically centered on the exact same horizontal axis! */
+  right: 75px; /* Changed to exactly 75px as requested! */
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px; /* Snugger gap matching the compact 105px left-side badge */
+  color: #FFFFFF; /* Crisp solid white! */
+  pointer-events: auto;
+}
+
+.header__arrow {
+  color: #FFFFFF; /* Crisp solid white! */
+  opacity: 0.9;
+  transform: scale(1.4); /* Elegant, thin arrow scaled perfectly to match the new compact height */
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.header__meta-text-container:hover .header__arrow {
+  transform: scale(1.5) translate(4px, 4px); /* Dynamic hover shift down-right */
+}
+
+.header__meta-title {
+  font-size: clamp(22px, 2vw, 28px); /* Proportional editorial text size matching the 105px left box footprint */
+  font-weight: 300; /* Sophisticated light weight */
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #FFFFFF; /* Crisp solid white! */
+  font-family: var(--font-main); /* FIX: Sourced the beautiful Inter font variable correctly! */
+}
+
+/* ============================================
+   MARQUEE (Dennis style - Giant, Transparent, Bottom Overlap)
+   ============================================ */
+.marquee {
+  position: absolute;
+  bottom: 50px; /* Pushed up by approx. 2 cm from the bottom edge for elegant floating overlap */
+  left: 0;
+  width: 100%;
+  background: transparent; /* Absolutely transparent - no black bar! */
+  padding: 0;
+  overflow: hidden;
+  z-index: 3; /* Render on top of portrait but behind badges */
+  pointer-events: none;
+}
+
+.marquee__inner {
+  display: flex;
+  width: max-content; /* Force the tracks to sit fully side-by-side with zero wrapping */
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+.marquee__text {
+  font-size: clamp(120px, 16vw, 240px); /* Massive bold letters */
+  font-weight: 400;
+  color: #FFFFFF; /* High contrast white letters */
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+  padding-right: 40px;
+  text-transform: none; /* Respects exact capital/lowercase typed in JS, like Abdul Haseeb Iqbal */
+  font-family: var(--font-main); /* Sourced the beautiful Inter font correctly! */
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about {
+  background: var(--color-white); /* Premium modern white background per user direction! */
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.about__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 100px;
+  align-items: flex-start;
+}
+
+.about__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__title {
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+  
+  /* The Liquid Metal Gradient Effect */
+  background: linear-gradient(
+    90deg, 
+    var(--color-dark) 0%, 
+    #4A4E69 20%, 
+    #455CE9 40%, 
+    #A6B1E1 50%, 
+    #455CE9 60%, 
+    #4A4E69 80%, 
+    var(--color-dark) 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: metal-shine 8s ease-in-out infinite alternate;
+}
+
+@keyframes metal-shine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.about__title em {
+  font-style: italic;
+  opacity: 1; /* Fixes rendering collision with text-fill-color */
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.about__body {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-dark);
+  opacity: 0.85;
+  max-width: 560px;
+  margin-bottom: 60px;
+}
+
+.about__philosophy {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 60px;
+  align-items: flex-start;
+  padding: 28px;
+  background: var(--color-light); /* Contrast highlight against white */
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  max-width: 560px;
+}
+
+.about__philosophy svg {
+  color: var(--color-dark);
+  opacity: 0.8;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.about__philosophy p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-dark);
+  opacity: 0.9;
+}
+
+.about__philosophy strong {
+  font-weight: 550;
+  color: var(--color-dark);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.about__cta {
+  margin-top: 20px;
+}
+
+.about__right {
+  position: relative;
+  height: 700px; /* Increased height to fit the gorgeous 4-card cascade! */
+}
+
+.about__cards-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.about__card {
+  position: absolute;
+  width: 90%;
+  max-width: 380px;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px rgba(28, 29, 32, 0.06); /* Softened for high-end contrast */
+  transition: transform 0.5s var(--ease-out-expo),
+              box-shadow 0.5s var(--ease-out-expo),
+              z-index 0s 0s;
+  cursor: pointer;
+}
+
+.about__card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  background: var(--color-white);
+  border-radius: 28px;
+  overflow: hidden; /* Clips the internal rotating laser */
+}
+
+/* The rotating Laser Border Effect */
+.about__card-inner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent, 
+    transparent, 
+    transparent, 
+    rgba(28, 29, 32, 0.1), 
+    var(--color-dark) /* The actual energetic beam color! */
+  );
+  animation: laser-spin 4s linear infinite;
+  z-index: 0;
+}
+
+/* The Internal Mask ensuring content background stays flat and hides center of laser */
+.about__card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px; /* Creates a precision 1.5px border width */
+  background: var(--color-white);
+  border-radius: 26.5px;
+  z-index: 1;
+}
+
+/* Ensure card texts stack above the laser z-index context */
+.about__card-tag, 
+.about__card-title, 
+.about__card-text {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes laser-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.about__card:hover {
+  transform: translateY(-15px) scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 40px 80px rgba(28, 29, 32, 0.15);
+  z-index: 20 !important;
+}
+
+.card-1 {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: rotate(-5deg);
+}
+
+.card-2 {
+  top: 100px;
+  left: 60px;
+  z-index: 2;
+  transform: rotate(3deg);
+}
+
+.card-3 {
+  top: 200px;
+  left: 30px;
+  z-index: 3;
+  transform: rotate(-2deg);
+}
+
+.card-4 {
+  top: 300px;
+  left: 90px;
+  z-index: 4;
+  transform: rotate(4deg);
+}
+
+.about__card-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-dark);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.about__card-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.about__card-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-dark);
+  opacity: 0.75;
+}
+
+/* Ensure responsive breakdown */
+@media (max-width: 1024px) {
+  .about__container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 0 32px;
+  }
+  .about__right {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+  }
+  .about__card {
+    width: 85%;
+    max-width: 340px;
+  }
+}
+
+
+/* Magnetic Round Button */
+.round-btn {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: transform 0.3s var(--ease-out-expo),
+              background 0.3s ease;
+  will-change: transform;
+  text-align: center;
+  line-height: 1.3;
+  padding: 20px;
+}
+
+.round-btn:hover {
+  background: var(--color-blue);
+}
+
+.round-btn--blue {
+  background: var(--color-blue);
+}
+
+.round-btn--blue:hover {
+  background: var(--color-dark);
+}
+
+.round-btn--large {
+  width: 200px;
+  height: 200px;
+  font-size: 15px;
+}
+
+/* ============================================
+   WORK / PROJECTS SECTION
+   ============================================ */
+.work {
+  background: var(--color-light);
+  padding: 0 40px 120px;
+  position: relative;
+}
+
+.work__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 0 40px;
+  border-top: 1px solid rgba(28,29,32,0.15);
+}
+
+.work__label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-dark);
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.work__list {
+  list-style: none;
+  border-top: 1px solid rgba(28,29,32,0.12);
+}
+
+.work__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(28,29,32,0.12);
+  cursor: none;
+  position: relative;
+  transition: padding 0.3s var(--ease-out-expo);
+}
+
+.work__item:hover {
+  padding-left: 8px;
+}
+
+.work__item-name {
+  font-size: clamp(24px, 4vw, 52px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.work__item:hover .work__item-name {
+  color: var(--color-blue);
+}
+
+.work__item-meta {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.work__item-category {
+  font-size: 13px;
+  color: var(--color-dark);
+  opacity: 0.5;
+  letter-spacing: 0.02em;
+}
+
+.work__item-year {
+  font-size: 13px;
+  color: var(--color-dark);
+  opacity: 0.5;
+}
+
+/* Floating project image on hover */
+.work__hover-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 500;
+  opacity: 0;
+  transform: scale(0.8) rotate(-4deg);
+  transition: opacity 0.4s var(--ease-out-expo),
+              transform 0.4s var(--ease-out-expo);
+  will-change: transform, opacity, top, left;
+}
+
+.work__hover-img.visible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.work__hover-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.work__grid-item {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--color-dark);
+  position: relative;
+}
+
+.work__grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.work__grid-item:hover .work__grid-img {
+  transform: scale(1.05);
+}
+
+.work__grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28,29,32,0.8) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+}
+
+.work__grid-item:hover .work__grid-overlay {
+  opacity: 1;
+}
+
+.work__grid-title {
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.work__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+/* ============================================
+   CONTACT / FOOTER SECTION
+   ============================================ */
+.contact {
+  background: var(--color-dark);
+  padding: 120px 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.contact__title-wrapper {
+  grid-column: 1 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 280px;
+}
+
+.contact__title {
+  font-size: clamp(52px, 8vw, 120px);
+  font-weight: 400;
+  color: var(--color-white);
+  text-align: center;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact__portrait {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 280px;
+  border-radius: 200px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.contact__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.contact__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.contact__btn-get {
+  /* big blue circle button */
+}
+
+.contact__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  color: var(--color-white);
+  font-size: 15px;
+  font-weight: 400;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.contact__pill:hover {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+/* Footer bar */
+.footer {
+  background: var(--color-dark);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copy {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+
+.footer__time {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__social-link {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.footer__social-link:hover {
+  color: var(--color-white);
+}
+
+/* ============================================
+   SECTION REVEAL ANIMATIONS
+   ============================================ */
+.reveal-line {
+  overflow: hidden;
+}
+
+.reveal-line__inner {
+  transform: translateY(110%);
+  display: block;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .header__top {
+    padding: 120px 24px 40px;
+    justify-content: flex-start;
+    gap: 30px;
+  }
+  .header__meta-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header__center {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 40px auto;
+  }
+  .header__bottom-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .header__title-large {
+    text-align: center;
+  }
+  .header__intro-text {
+    text-align: center;
+    max-width: 100%;
+  }
+  .about {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .work__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .nav {
+    padding: 20px 24px;
+  }
+  .contact__title {
+    font-size: clamp(36px, 10vw, 70px);
+  }
+  .footer {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .work__grid {
+    grid-template-columns: 1fr;
+  }
+  .work__item-name {
+    font-size: clamp(20px, 6vw, 36px);
+  }
+}
+
+/* Premium Liquid Charcoal Blobs Animation */
+@keyframes floatOrb1 {
+  0% { transform: translate3d(0px, 0px, 0px) scale(1); }
+  50% { transform: translate3d(60px, 80px, 0px) scale(1.2); }
+  100% { transform: translate3d(-30px, -40px, 0px) scale(0.9); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate3d(0px, 0px, 0px) scale(1); }
+  50% { transform: translate3d(-80px, -50px, 0px) scale(0.8); }
+  100% { transform: translate3d(50px, 60px, 0px) scale(1.1); }
+}
+
+@keyframes floatOrb3 {
+  0% { transform: translate3d(0px, 0px, 0px) scale(1); }
+  50% { transform: translate3d(-40px, 60px, 0px) scale(1.15); }
+  100% { transform: translate3d(60px, -30px, 0px) scale(0.95); }
+}
+
+.animate-orb-1 {
+  animation: floatOrb1 22s infinite alternate ease-in-out !important;
+}
+
+.animate-orb-3 {
+  animation: floatOrb3 20s infinite alternate ease-in-out !important;
+}
+
+/* Standard Native Browser Cursor Style forced globally on all elements */
+*, body, html {
+  cursor: auto !important; /* Forces the default, standard native operating system mouse arrow cursor */
+}
+
+a, button, .round-btn, .work__item, .contact__pill, [role="button"] {
+  cursor: pointer !important; /* Forces the standard native hand pointer cursor on all clickable items */
+}
+
+/* ============================================
+   CONTACT PAGE STYLES
+   ============================================ */
+.contact-page {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: #1C1D20; /* Sleek, dark modern canvas for a premium, high-contrast look! */
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  padding: 120px 80px 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-page__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.5; /* Beautifully soft contrast so the white text stands out gorgeously! */
+  pointer-events: auto; /* Allows cursor tracking so the balls react dynamically to mouse sweeps! */
+}
+
+.contact-page__nav {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 80px;
+  pointer-events: auto;
+}
+
+.contact-page__back-btn {
+  font-size: 18px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 450;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.contact-page__back-btn:hover {
+  opacity: 1;
+}
+
+.contact-page__container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 120px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.contact-page__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-page__title {
+  font-size: clamp(38px, 5.5vw, 76px);
+  line-height: 1.1;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin-bottom: 60px;
+}
+
+.contact-page__title span {
+  font-weight: 450;
+  display: block;
+}
+
+.contact-page__details {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-page__detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-page__label {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.contact-page__link, .contact-page__val {
+  font-size: 18px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.contact-page__link:hover {
+  opacity: 0.7;
+}
+
+.contact-page__socials {
+  display: flex;
+  gap: 24px;
+}
+
+.contact-page__social-link {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.contact-page__social-link:hover {
+  opacity: 1;
+}
+
+.contact-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.contact-page__form-row {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 24px;
+  align-items: flex-start;
+  transition: border-color 0.4s ease;
+}
+
+.contact-page__form-row:focus-within {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-page__number {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+  padding-top: 4px;
+}
+
+.contact-page__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.contact-page__input-label {
+  font-size: 19px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+.contact-page__input, .contact-page__textarea {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 18px;
+  outline: none;
+  padding: 4px 0;
+  width: 100%;
+}
+
+.contact-page__input::placeholder, .contact-page__textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.contact-page__textarea {
+  resize: none;
+}
+
+.contact-page__status {
+  padding: 18px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.contact-page__status.success {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.contact-page__status.info {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.contact-page__submit-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .contact-page {
+    padding: 80px 24px 100px;
+  }
+  .contact-page__container {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+  .contact-page__submit-wrapper {
+    justify-content: flex-start;
+  }
+}
+
