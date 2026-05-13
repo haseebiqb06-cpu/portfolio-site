@@ -1356,3 +1356,130 @@ a, button, .round-btn, .work__item, .contact__pill, [role="button"] {
   }
 }
 
+/* ============================================
+   DEDICATED ABOUT PAGE (WHITE MODE)
+   ============================================ */
+.about-page {
+  background: var(--color-white); /* Solid elegant white background */
+  color: var(--color-dark);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 100px; /* Buffer room for footer flows later */
+}
+
+.about-page__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about-page__logo a {
+  text-decoration: none;
+  color: var(--color-dark);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.about-page__nav {
+  display: flex;
+  gap: 40px;
+}
+
+.about-page__nav .nav-item {
+  text-decoration: none;
+  color: var(--color-dark);
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.about-page__nav .nav-item:hover {
+  opacity: 0.6;
+}
+
+.about-page__nav .nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--color-dark);
+  border-radius: 50%;
+}
+
+.about-hero {
+  padding: 100px 0 30px 0; /* Elegantly lower content from the navbar buffer */
+}
+
+.about-hero__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.about-hero__title {
+  font-size: clamp(32px, 4.5vw, 76px); /* Scaled down slightly more for optimal sophisticated elegance */
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-dark);
+  max-width: 1100px;
+  margin-bottom: 40px; /* Reduced distance to pull globe and line closer */
+}
+
+.about-hero__divider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 160px; /* Snug height to fit within vertical screen constraints */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10%;
+}
+
+.about-hero__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  background: rgba(28, 29, 32, 0.15); /* Precise subtle grey hairline */
+}
+
+.about-hero__globe-btn {
+  width: 180px;
+  height: 180px;
+  background: #455CE9; /* High-contrast dynamic blue from reference */
+  border-radius: 50%;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2; /* Stays above line */
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out-expo), background 0.3s ease;
+}
+
+.about-hero__globe-btn:hover {
+  background: var(--color-dark); /* Smooth hover interact */
+}
+
+/* Ensure responsive sizing for the giant text */
+@media (max-width: 1024px) {
+  .about-page__header { padding: 24px 32px; }
+  .about-hero__container { padding: 0 32px; }
+  .about-hero__divider-wrapper { padding-right: 0; }
+  .about-hero__globe-btn { width: 140px; height: 140px; }
+}
+
+

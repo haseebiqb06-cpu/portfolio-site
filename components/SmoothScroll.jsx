@@ -1,8 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null);
+  const pathname = usePathname(); // Track route changes
 
   useEffect(() => {
     let lenis;
@@ -23,8 +25,20 @@ export default function SmoothScroll({ children }) {
       requestAnimationFrame(raf);
     };
     init();
-    return () => lenis && lenis.destroy();
+    
+    return () => {
+      if (lenis) lenis.destroy();
+    };
   }, []);
+
+  // MAGIC FIX: Every time you change pages, force scroll to instant TOP!
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   return <>{children}</>;
 }
