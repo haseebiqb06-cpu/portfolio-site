@@ -1366,7 +1366,16 @@ a, button, .round-btn, .work__item, .contact__pill, [role="button"] {
   width: 100%;
   position: relative;
   overflow-x: hidden;
-  padding-bottom: 100px; /* Buffer room for footer flows later */
+  padding-bottom: 0; /* Removed padding so footer snaps to edge */
+}
+
+.about-intro {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-white);
+  width: 100%;
+  transform-origin: top center;
 }
 
 .about-page__header {
@@ -1481,5 +1490,294 @@ a, button, .round-btn, .work__item, .contact__pill, [role="button"] {
   .about-hero__divider-wrapper { padding-right: 0; }
   .about-hero__globe-btn { width: 140px; height: 140px; }
 }
+
+/* -------------------------------------------
+   ABOUT EDITORIAL STORY SECTION
+   ------------------------------------------- */
+.about-story {
+  padding: 120px 0;
+  background: var(--color-light); /* Switched to match the high-end premium light grey from the Work section */
+  position: relative;
+  z-index: 2; /* Slides cleanly OVER the sticky intro */
+}
+
+.about-story__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.about-story__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr; /* Sophisticated asymmetric split */
+  gap: 100px;
+  align-items: start;
+}
+
+/* Image Container & Effect */
+.about-story__img-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5; /* Cinematic high-end portrait ratio */
+  background: var(--color-light);
+}
+
+.about-story__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fills cinematic space perfectly */
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.about-story__img-wrapper:hover .about-story__img {
+  transform: scale(1.05); /* Subtle, expensive motion */
+}
+
+/* Content & Typography */
+.about-story__content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.about-story__label {
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-dark);
+  opacity: 0.5;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.about-story__heading {
+  font-size: clamp(28px, 3vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-bottom: 48px;
+}
+
+.about-story__paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-story__paragraphs p {
+  font-size: clamp(17px, 1.2vw, 20px);
+  line-height: 1.6;
+  color: var(--color-dark);
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* Mobile Handling */
+@media (max-width: 1024px) {
+  .about-story__grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .about-story__img-wrapper {
+    aspect-ratio: 16 / 9; /* Flattens out for mobile aesthetic */
+  }
+  .about-story__container {
+    padding: 0 32px;
+  }
+  .about-story {
+    padding: 80px 0;
+  }
+}
+
+/* -------------------------------------------
+   ABOUT ENGINEERING TOOLKIT (THE GRAND FINALE)
+   ------------------------------------------- */
+.about-toolkit {
+  padding: 140px 0 160px 0;
+  background: var(--color-white);
+  position: relative;
+  z-index: 3; /* Stays comfortably on top stacking layer */
+}
+
+.about-toolkit__container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.about-toolkit__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* Split balancing tech icons vs capabilities */
+  gap: 100px;
+  align-items: flex-start;
+}
+
+/* Heading Context */
+.about-toolkit__heading-wrapper {
+  margin-bottom: 60px;
+}
+
+.about-toolkit__title {
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+}
+
+.about-toolkit__title--accent {
+  color: #455CE9; /* Your premium energetic accent blue */
+  font-style: italic;
+}
+
+.about-toolkit__subtitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-dark);
+  opacity: 0.5;
+  font-weight: 500;
+}
+
+/* Dynamic Tech Grid and Glass Cards */
+.about-toolkit__tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 24px;
+  max-width: 450px; /* Keeps grid tight and impactful */
+}
+
+.tech-card {
+  aspect-ratio: 1 / 1;
+  background: rgba(255, 255, 255, 0.8); /* Base translucent white */
+  border: 1px solid rgba(28, 29, 32, 0.08); /* Razor thin micro-border */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1C1D20;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03); /* Sophisticated soft shadow */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s var(--ease-out-expo);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* High-End Hover Effect */
+.tech-card:hover {
+  background: var(--color-white);
+  border-color: #455CE9; /* Lights up dynamically on hover */
+  color: #455CE9;
+  box-shadow: 0 20px 40px rgba(69, 92, 233, 0.15); /* Soft Blue glow */
+  transform: translateY(-5px);
+}
+
+/* CSS Powered Tooltip Engine from user reference */
+.tech-card::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tech-card:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+}
+
+/* Capability / Services List */
+.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba(28, 29, 32, 0.1); /* Top hairline */
+}
+
+.capability-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(28, 29, 32, 0.1); /* Separator hairlines */
+  cursor: pointer;
+  transition: padding-left 0.4s var(--ease-out-expo);
+}
+
+/* Elegant item hover pull */
+.capability-item:hover {
+  padding-left: 20px; /* Slides dynamically outward */
+}
+
+.capability-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-dark); /* Matches black circles in reference */
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.capability-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.capability-item:hover .capability-icon {
+  background: #455CE9; /* Turns energetic blue on row hover! */
+  transform: rotate(10deg);
+}
+
+.capability-text {
+  font-size: clamp(18px, 1.5vw, 24px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+  transition: color 0.3s ease;
+}
+
+.capability-item:hover .capability-text {
+  color: #455CE9;
+}
+
+/* Responsive Handling for Grid Columns */
+@media (max-width: 1024px) {
+  .about-toolkit__grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+  .about-toolkit__tech-grid {
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+  .about-toolkit__container {
+    padding: 0 32px;
+  }
+  .about-toolkit {
+    padding: 100px 0;
+  }
+}
+
+
 
 
