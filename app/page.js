@@ -86,10 +86,11 @@ export default function Home() {
             start: 'top top',
             end: '+=200', // Fully fade out within 200px of scroll
             scrub: true,
+            onLeave: () => gsap.set('.nav', { pointerEvents: 'none' }),
+            onEnterBack: () => gsap.set('.nav', { pointerEvents: 'auto' })
           },
           opacity: 0,
           y: -20, // Lightly drift up out of frame
-          pointerEvents: 'none',
           ease: 'none'
         });
       });

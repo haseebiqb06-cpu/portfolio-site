@@ -34,10 +34,11 @@ export default function AboutPage() {
             start: 'top bottom',
             end: 'top top',
             scrub: true,
+            onLeave: () => gsap.set('#about-intro', { pointerEvents: 'none' }),
+            onEnterBack: () => gsap.set('#about-intro', { pointerEvents: 'auto' })
           },
           scale: 0.9,
           opacity: 0, // COMPLETELY ERASE TO PREVENT OVERLAPPING LINKS!
-          pointerEvents: 'none',
           transformOrigin: 'top center',
           ease: 'none'
         });

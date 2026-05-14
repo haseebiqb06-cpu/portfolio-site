@@ -10,7 +10,7 @@ const navItems = [
   { label: 'Home', href: '/' },
   { label: 'Work', href: '/#work' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/#contact' }
+  { label: 'Contact', href: '/contact' }
 ];
 
 const CurveMenu = () => {
