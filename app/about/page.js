@@ -61,7 +61,7 @@ export default function AboutPage() {
           <Link href="/">© Code by Abdul</Link>
         </div>
         <nav className="about-page__nav">
-          <Magnetic strength={0.2}><Link href="/" className="nav-item">Work</Link></Magnetic>
+          <Magnetic strength={0.2}><Link href="/#work" className="nav-item">Work</Link></Magnetic>
           <Magnetic strength={0.2}><Link href="/about" className="nav-item active">About</Link></Magnetic>
           <Magnetic strength={0.2}><Link href="/contact" className="nav-item">Contact</Link></Magnetic>
         </nav>

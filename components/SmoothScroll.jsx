@@ -33,11 +33,31 @@ export default function SmoothScroll({ children }) {
 
   // MAGIC FIX: Every time you change pages, force scroll to instant TOP!
   useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
+    // Small delay so Next.js completes DOM injection before scrolling
+    const timeoutId = setTimeout(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          if (lenisRef.current) {
+            // Instant snap to target to match default browser link mechanics
+            lenisRef.current.scrollTo(target, { immediate: true });
+          } else {
+            target.scrollIntoView();
+          }
+          return;
+        }
+      }
+      
+      // Default: reset to top if no hash present
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
   }, [pathname]);
 
   return <>{children}</>;
