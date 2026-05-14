@@ -1,0 +1,221 @@
+/* ============================================
+   CURVE MENU OVERLAY STYLES (SNELLENBERG STYLE)
+   ============================================ */
+
+/* 🍔 The Floating Burger Trigger */
+.curve-burger-wrap {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 990;
+  transform: scale(0); /* Animated via Framer Motion */
+  transform-origin: center;
+}
+
+.curve-burger {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #1C1D20; /* Deep Charcoal matching layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: none;
+  outline: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.curve-burger:hover {
+  background: #455CE9; /* Energetic blue pop on hover */
+}
+
+.curve-burger__line {
+  width: 30px;
+  height: 2px;
+  background: #FFFFFF;
+  display: block;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+/* 🌊 The Elastic Drawer Panel */
+.curve-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background: #1C1D20;
+  color: #FFFFFF;
+  z-index: 1000;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 80px 80px 80px;
+  box-sizing: border-box;
+  /* Dynamic width calculated to accommodate elastic wave and text */
+  width: clamp(320px, 45vw, 480px);
+}
+
+/* 📐 The Live SVG Wave Container */
+.curve-menu__svg {
+  position: absolute;
+  top: 0;
+  left: -99px; /* Position exactly to overlap drawer perimeter */
+  width: 100px;
+  height: 100%;
+  fill: #1C1D20;
+  pointer-events: none;
+}
+
+/* ✖️ The Floating Blue Close Button Overlay */
+.curve-close-wrap {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 1001;
+}
+
+.curve-close {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #455CE9; /* Reference electric blue contrast */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  box-shadow: 0 10px 25px rgba(69, 92, 233, 0.3);
+}
+
+.curve-close svg {
+  width: 28px;
+  height: 28px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 📝 Internal Structural Labels */
+.curve-menu__body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+  justify-content: center;
+}
+
+.curve-menu__label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* 🔗 Vertical Interactive Nav Stack */
+.curve-menu__nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curve-menu__nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+}
+
+/* Hover Indicator Dot */
+.curve-menu__indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  position: absolute;
+  left: -25px; /* Placed next to text */
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: scale(0);
+}
+
+.curve-menu__nav-item:hover .curve-menu__indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.curve-menu__link {
+  font-size: clamp(40px, 3.5vw, 56px);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.2s ease;
+  display: inline-block;
+}
+
+.curve-menu__nav-item:hover .curve-menu__link {
+  transform: translateX(10px); /* Smooth text slide on hover */
+}
+
+/* 🌐 Bottom Utilities & Social Row */
+.curve-menu__footer {
+  margin-top: auto;
+}
+
+.curve-menu__socials {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.curve-menu__social-link {
+  color: #FFFFFF;
+  font-size: 13px;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-weight: 400;
+}
+
+.curve-menu__social-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* 📱 Precise Adaptive Breakpoints */
+@media (max-width: 768px) {
+  .curve-menu {
+    width: 100%; /* Full screen on mobile for high readability */
+    padding: 100px 40px 60px 60px;
+  }
+  
+  .curve-menu__svg {
+    display: none; /* Remove curve on full mobile overlays to optimize frame renders */
+  }
+
+  .curve-burger-wrap, .curve-close-wrap {
+    top: 20px;
+    right: 20px;
+  }
+
+  .curve-burger, .curve-close {
+    width: 60px;
+    height: 60px;
+  }
+}

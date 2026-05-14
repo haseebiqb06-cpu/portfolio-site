@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Magnetic from '../../components/Magnetic';
 import TextType from '../../components/TextType';
+import CurveMenu from '../../components/CurveMenu';
 
 export default function AboutPage() {
   const [time, setTime] = useState('');
@@ -35,7 +36,8 @@ export default function AboutPage() {
             scrub: true,
           },
           scale: 0.9,
-          opacity: 0.5,
+          opacity: 0, // COMPLETELY ERASE TO PREVENT OVERLAPPING LINKS!
+          pointerEvents: 'none',
           transformOrigin: 'top center',
           ease: 'none'
         });
@@ -47,6 +49,7 @@ export default function AboutPage() {
 
   return (
     <div className="about-page">
+      <CurveMenu />
       {/* ============================================
          CINEMATIC STICKY INTRO (PEELS BACK ON SCROLL)
          ============================================ */}

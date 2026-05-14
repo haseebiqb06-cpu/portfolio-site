@@ -7,6 +7,7 @@ import SmoothScroll from '../components/SmoothScroll';
 import Magnetic from '../components/Magnetic';
 import AmbientOrbs from '../components/AmbientOrbs';
 import GooeyNav from '../components/GooeyNav';
+import CurveMenu from '../components/CurveMenu';
 
 const navItems = [
   { label: 'Work', href: '#work' },
@@ -72,8 +73,23 @@ export default function Home() {
             scrub: true,
           },
           scale: 0.9,
-          opacity: 0.5,
+          opacity: 0, // COMPLETELY FADE OUT!!!
+          pointerEvents: 'none',
           transformOrigin: 'top center',
+          ease: 'none'
+        });
+
+        // Hide standard floating Navbar on scroll past the fold
+        gsap.to('.nav', {
+          scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: '+=200', // Fully fade out within 200px of scroll
+            scrub: true,
+          },
+          opacity: 0,
+          y: -20, // Lightly drift up out of frame
+          pointerEvents: 'none',
           ease: 'none'
         });
       });
@@ -98,6 +114,7 @@ export default function Home() {
     <>
       {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
       <CustomCursor />
+      <CurveMenu />
       <SmoothScroll>
 
         {/* ============ NAVBAR ============ */}
