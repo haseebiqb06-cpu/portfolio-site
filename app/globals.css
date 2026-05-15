@@ -1841,7 +1841,7 @@ a, button, .round-btn, .work__item, .contact__pill, [role="button"] {
   
   .header__location-container {
     top: auto !important;
-    bottom: 180px !important;
+    bottom: 150px !important; /* Tucked elegantly above marquee */
     left: 0 !important;
     transform: none !important;
   }
@@ -1867,26 +1867,41 @@ a, button, .round-btn, .work__item, .contact__pill, [role="button"] {
   }
   
   .header__meta-text-container {
-    top: auto !important;
-    bottom: 40px !important;
-    left: 24px !important;
-    right: auto !important;
-    transform: none !important;
+    top: 26% !important; /* LIFTED safely above shoulders and hair into the clear top quadrant! */
+    right: 24px !important; /* Shifted to the RIGHT edge for premium asymmetry */
+    left: auto !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+    align-items: flex-end !important; /* Arrow points neatly to edge */
     gap: 12px !important;
   }
   
   .header__meta-title {
-    font-size: clamp(16px, 4.5vw, 20px) !important;
+    font-size: clamp(15px, 4vw, 18px) !important;
     line-height: 1.4 !important;
+    text-align: right !important; /* Perfectly aligned with edge */
+  }
+  
+  .header__center {
+    position: absolute !important;
+    bottom: 0 !important; /* PULL IT TO THE ABSOLUTE FLOOR! */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    z-index: 2 !important;
   }
   
   .header__img-wrapper {
-    width: 100vw !important; /* Span screen edge on small views */
+    width: 78vw !important; /* Trimmed slightly to create larger clear gutters on left and right! */
     height: 65vh !important;
+    display: flex !important;
+    align-items: flex-end !important;
   }
   
   .marquee__text {
-    font-size: clamp(80px, 20vw, 140px) !important; /* Cap massive signature text size */
+    font-size: clamp(60px, 16vw, 95px) !important; /* Slightly optimized to free up massive vertical breathing room */
   }
 
   /* 5. About Page Divider Line and Typography Tweaks */
