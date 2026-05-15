@@ -88,10 +88,14 @@ export default function AboutPage() {
             
             <Magnetic strength={0.4}>
               <div className="about-hero__globe-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" width="50" height="50">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M2 12h20"></path>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" width="60" height="60" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10" />
+                  <path d="M12 2v20" />
+                  <path d="M2 12h20" />
+                  <path d="M4.5 7.5a14 14 0 0 1 15 0" />
+                  <path d="M4.5 16.5a14 14 0 0 0 15 0" />
                 </svg>
               </div>
             </Magnetic>
