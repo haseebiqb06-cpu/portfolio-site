@@ -342,8 +342,8 @@ export default function Home() {
             <div className="footer__socials">
               <a href="#" className="footer__social-link">Instagram</a>
               <a href="#" className="footer__social-link">Twitter</a>
-              <a href="#" className="footer__social-link">LinkedIn</a>
-              <a href="#" className="footer__social-link">GitHub</a>
+              <a href="https://www.linkedin.com/in/abdul-haseeb-iqbal-a128a6390" target="_blank" rel="noreferrer" className="footer__social-link">LinkedIn</a>
+              <a href="https://github.com/haseebiqb06-cpu" target="_blank" rel="noreferrer" className="footer__social-link">GitHub</a>
             </div>
           </footer>
         </section>

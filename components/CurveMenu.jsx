@@ -167,8 +167,8 @@ const CurveMenu = () => {
               <div className="curve-menu__socials">
                 <a href="#" target="_blank" rel="noreferrer" className="curve-menu__social-link">Awwwards</a>
                 <a href="#" target="_blank" rel="noreferrer" className="curve-menu__social-link">Instagram</a>
-                <a href="#" target="_blank" rel="noreferrer" className="curve-menu__social-link">Twitter</a>
-                <a href="#" target="_blank" rel="noreferrer" className="curve-menu__social-link">LinkedIn</a>
+                <a href="https://github.com/haseebiqb06-cpu" target="_blank" rel="noreferrer" className="curve-menu__social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/abdul-haseeb-iqbal-a128a6390" target="_blank" rel="noreferrer" className="curve-menu__social-link">LinkedIn</a>
               </div>
             </div>
           </motion.div>

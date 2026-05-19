@@ -83,8 +83,8 @@ export default function ContactPage() {
               <div className="contact-page__socials">
                 <a href="#" className="contact-page__social-link">Instagram</a>
                 <a href="#" className="contact-page__social-link">Twitter</a>
-                <a href="#" className="contact-page__social-link">LinkedIn</a>
-                <a href="#" className="contact-page__social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/abdul-haseeb-iqbal-a128a6390" target="_blank" rel="noreferrer" className="contact-page__social-link">LinkedIn</a>
+                <a href="https://github.com/haseebiqb06-cpu" target="_blank" rel="noreferrer" className="contact-page__social-link">GitHub</a>
               </div>
             </div>
           </div>
